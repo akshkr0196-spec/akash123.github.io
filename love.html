@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>She Said Yes ❤️</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="card">
+    <div class="emoji">🤗 🌸 💕</div>
+    <h2>Yay! She said YES 💕</h2>
+    <p class="sub">Congratulations Richa!</p>
+    <p>This moment just became a beautiful memory ✨</p>
+    <p>
+        You are my today, my tomorrow, and my forever.<br>
+        Thank you for being my wife,<br>
+        my love, my best friend.
+    </p>
+    <p class="love">I love you endlessly ❤️💕</p>
+</div>
+<!-- Music -->
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* Floating Hearts Generator */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*20+15+"px";
+    heart.style.animationDuration=Math.random()*3+3+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+
+setInterval(createHeart,500);
+
+/* Confetti Effect */
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let confetti=[];
+
+for(let i=0;i<150;i++){
+    confetti.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*6+2,
+        d:Math.random()*150
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="white";
+    ctx.beginPath();
+    for(let i=0;i<confetti.length;i++){
+        let c=confetti[i];
+        ctx.moveTo(c.x,c.y);
+        ctx.arc(c.x,c.y,c.r,0,Math.PI*2,true);
+    }
+    ctx.fill();
+    update();
+}
+
+function update(){
+    for(let i=0;i<confetti.length;i++){
+        let c=confetti[i];
+        c.y+=Math.cos(c.d)+1+ c.r/2;
+        if(c.y>canvas.height){
+            c.y=0;
+        }
+    }
+}
+
+setInterval(draw,20);
+function sayYes(){
+    document.getElementById("bgMusic").play(); // music play karega
+    setTimeout(function(){
+        window.location.href = "love.html"; // direct next page open
+    }, 8000); // 1.8 second delay (cute effect)
+}
+
+
+</script>
+
+</body>
+</html>

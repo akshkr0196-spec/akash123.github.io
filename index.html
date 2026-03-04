@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Card</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Floating Hearts -->
+<div class="hearts"></div>
+
+<!-- Card -->
+<div class="card">
+    
+    <div class="emoji">🐱 💗</div>
+
+    <h2>Will you be my Valentine?</h2>
+
+    <div class="buttons">
+        <button class="yes-btn" onclick="sayYes()">Yes</button>
+        <button class="no-btn" onmouseover="moveNo(this)">No</button>
+    </div>
+
+    <p class="note">(No is a little shy 😈)</p>
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function sayYes(){
+    document.getElementById("bgMusic").play(); // music play karega
+    setTimeout(function(){
+        window.location.href = "love.html"; // direct next page open
+    }, 800); // 1.8 second delay (cute effect)
+}
+
+function moveNo(button){
+    button.style.position = "absolute";
+    button.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    button.style.left = Math.random() * (window.innerWidth - 100) + "px";
+}
+</script>
+
+</body>
+</html>
